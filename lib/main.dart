@@ -11,13 +11,11 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-TextEditingController weightController = TextEditingController();
-TextEditingController heightController = TextEditingController();
-
-String _infoText = "Informe os Dados";
-
 class _HomeState extends State<Home> {
+  TextEditingController weightController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _infoText = "Informe os Dados";
 
   void resetFields() {
     weightController.text = "";
@@ -85,6 +83,12 @@ class _HomeState extends State<Home> {
                   fontSize: 25,
                 ),
                 controller: weightController,
+                // ignore: missing_return
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Insira seu peso";
+                  }
+                },
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
@@ -98,6 +102,12 @@ class _HomeState extends State<Home> {
                   fontSize: 25,
                 ),
                 controller: heightController,
+                // ignore: missing_return
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Insira sua Altura";
+                  }
+                },
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
